@@ -4,6 +4,7 @@ MarkupSafe==0.15
 PasteDeploy==1.5.0
 WebOb==1.2.3
 distribute==0.6.34
+psycopg2=2.4.6
 pyramid==1.4
 repoze.lru==0.6
 translationstring==1.1
