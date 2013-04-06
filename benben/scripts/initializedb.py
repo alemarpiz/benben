@@ -4,10 +4,8 @@ import transaction
 
 from sqlalchemy import engine_from_config
 
-from pyramid.paster import (
-    get_appsettings,
-    setup_logging,
-    )
+from paste.deploy import appconfig
+from pyramid.paster import setup_logging
 
 from ..models import (
     DBSession,
@@ -28,7 +26,10 @@ def main(argv=sys.argv):
         usage(argv)
     config_uri = argv[1]
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri)
+    settings = appconfig(
+        'config:' + config_uri, name='main', relative_to=os.getcwd(),
+        global_conf={'http_port': os.environ.get('PORT'),
+                     'db_uri': os.environ.get('DATABASE_URL')})
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
