@@ -29,7 +29,7 @@ def main(argv=sys.argv):
     settings = appconfig(
         'config:' + config_uri, name='main', relative_to=os.getcwd(),
         global_conf={'http_port': os.environ.get('PORT'),
-                     'db_uri': os.environ.get('DATABASE_URL')})
+                     'db_url': os.environ.get('DATABASE_URL')})
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
