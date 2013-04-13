@@ -7,7 +7,7 @@ SQLAlchemy==0.8.0
 WebOb==1.2.3
 cov-core==1.7
 coverage==3.6
-distribute==0.6.36
+distribute
 execnet==1.1
 mock==1.0.1
 pep8==1.4.5
