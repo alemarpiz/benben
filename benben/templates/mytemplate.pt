@@ -12,6 +12,7 @@
   <!--[if lte IE 6]>
   <link rel="stylesheet" href="${request.static_url('benben:static/ie6.css')}" type="text/css" media="screen" charset="utf-8" />
   <![endif]-->
+  <script data-main="${request.static_url('benben:static/js/main')}" src="${request.static_url('benben:static/js/libs/require.js')}"></script>
 </head>
 <body>
   <div id="wrap">
