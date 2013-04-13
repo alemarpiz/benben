@@ -28,3 +28,4 @@ waitress==0.8.2
 zope.deprecation==4.0.2
 zope.interface==4.0.5
 zope.sqlalchemy==0.7.2
+-e .
