@@ -4,30 +4,27 @@ require.config({
   baseUrl: 'static/js',
   paths: {
     // Major libraries
-    jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
     lodash: 'libs/lodash',
     backbone: 'libs/backbone',
     marionette: 'libs/backbone.marionette',
+    bootstrap: '../bootstrap/js/bootstrap',
 
     // Require.js plugins
     text: 'libs/require/text'
 
   },
 
-  shim : {
-    jquery : {
-      exports : 'jQuery'
-    },
-    lodash : {
-      exports : '_'
+  shim: {
+    lodash: {
+      exports: '_'
     },
     backbone : {
-      deps : ['jquery', 'lodash'],
-      exports : 'Backbone'
+      deps: ['jquery', 'lodash'],
+      exports: 'Backbone'
     },
-    marionette : {
-      deps : ['jquery', 'lodash', 'backbone'],
-      exports : 'Marionette'
+    marionette: {
+      deps: ['jquery', 'lodash', 'backbone'],
+      exports: 'Marionette'
     }
   }
 
