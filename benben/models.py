@@ -1,4 +1,7 @@
-from abc import ABCMeta
+from .compat import (
+    basestring,
+    unicode,
+    )
 from benben.sqla import (
     NestedMutationDict,
     JsonType,
@@ -17,7 +20,6 @@ from sqlalchemy import (
     Unicode,
     UniqueConstraint,
     )
-from sqlalchemy.ext.declarative.api import DeclarativeMeta
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.orderinglist import ordering_list
@@ -43,12 +45,7 @@ Base.metadata = metadata
 Base.objects = DBSession.query_property()
 
 
-class PageMetaclass(DeclarativeMeta, ABCMeta):
-    # grumble, without this we get a metaclass conflict
-    pass
-
-
-class Page(Base, MutableMapping, metaclass=PageMetaclass):
+class Page(Base):
     """A basic page in the content hierarchy."""
 
     __tablename__ = 'pages'
@@ -147,7 +144,7 @@ class Page(Base, MutableMapping, metaclass=PageMetaclass):
     def __getitem__(self, path):
         DBSession()._autoflush()
 
-        if not hasattr(path, '__iter__'):
+        if isinstance(path, basestring):
             path = (path,)
         path = [unicode(p) for p in path]
 
@@ -195,6 +192,8 @@ class Page(Base, MutableMapping, metaclass=PageMetaclass):
     def children(self):
         """Return *all* child pages without considering permissions."""
         return self._children
+
+Page.__bases__ += (MutableMapping,)
 
 
 def get_root(request=None):
