@@ -193,6 +193,9 @@ class Page(Base):
         """Return *all* child pages without considering permissions."""
         return self._children
 
+    def __json__(self, request=None):
+        return dict((k, v) for k, v in vars(self).items() if not k.startswith('_'))
+
 Page.__bases__ += (MutableMapping,)
 
 

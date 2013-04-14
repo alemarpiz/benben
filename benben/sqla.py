@@ -44,6 +44,9 @@ class MutationDict(Mutable):
         else:
             return value
 
+    def __json__(self, request=None):
+        return self._d
+
 
 class MutationList(Mutable):
     def __init__(self, data):
@@ -61,6 +64,9 @@ class MutationList(Mutable):
 
     def __radd__(self, other):
         return other + self._d
+
+    def __json__(self, request=None):
+        return self._d
 
 
 def _make_mutable_method_wrapper(wrapper_class, methodname, mutates):
