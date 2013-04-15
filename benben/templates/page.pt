@@ -11,5 +11,7 @@
 
   <div id="app_region" class="container"></div>
   
+  ${layout}
+
 </body>
 </html>

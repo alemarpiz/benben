@@ -11,34 +11,45 @@ requires = [
     'SQLAlchemy',
     'transaction',
     'pyramid_tm',
-    'pyramid_debugtoolbar',
     'zope.sqlalchemy',
     'waitress',
-    ]
+]
 
-setup(name='benben',
-      version='0.0',
-      description='benben',
-      long_description=README + '\n\n' + CHANGES,
-      classifiers=[
+setup(
+    name='benben',
+    version='0.0',
+    description='benben',
+    long_description=README + '\n\n' + CHANGES,
+    classifiers=[
         "Programming Language :: Python",
         "Framework :: Pyramid",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-        ],
-      author='',
-      author_email='',
-      url='',
-      keywords='web wsgi bfg pylons pyramid',
-      packages=find_packages(),
-      include_package_data=True,
-      zip_safe=False,
-      test_suite='benben',
-      install_requires=requires,
-      entry_points="""\
-      [paste.app_factory]
-      main = benben:main
-      [console_scripts]
-      initialize_benben_db = benben.scripts.initializedb:main
-      """,
-      )
+    ],
+    author='',
+    author_email='',
+    url='',
+    keywords='web wsgi bfg pylons pyramid',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    test_suite='benben',
+    install_requires=requires,
+    extras_require={
+        'test': [
+            'mock',
+            'pytest',
+            'pytest-cov',
+            'pytest-pep8',
+            ],
+        'dev': ['pyramid_debugtoolbar'],
+    },
+    entry_points="""\
+    [paste.app_factory]
+    main = benben:main
+    [console_scripts]
+    initialize_benben_db = benben.scripts.initializedb:main
+    [pytest11]
+    benben = benben.tests
+    """,
+)
